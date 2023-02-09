@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+:root {
+    --radii: 0 0 20px rgba(48, 46, 77, 0.15)
+}
+
+/*Body color attributes*/
+body[data-color='red'] {
+    --skin-color: #da1427;
+}
+
+body[data-color='orange'] {
+    --skin-color: #ef750c;
+}
+
+body[data-color='yellow'] {
+    --skin-color: #ffd700;
+}
+
+body[data-color='green'] {
+    --skin-color: #008000;
+}
+
+body[data-color='cyan'] {
+    --skin-color: #00a3e1;
+}
+
+body[data-color='blue'] {
+    --skin-color: #0000b4;
+}
+
+body[data-color='indigo'] {
+    --skin-color: #6600b0;
+}
+
+body[data-color='pink'] {
+    --skin-color: #e83e8c;
+}
+
+body[data-color='brown'] {
+    --skin-color: #795548;
+}
+
+body[data-color='grey'] {
+    --skin-color: #808080;
+}
+
+/*Body color attributes*/
+body[data-theme='day'] {
+    --bg-black-900: #f2f2fc;
+    --bg-black-100: #fdf9ff;
+    --bg-black-50: #e8dfec;
+    --text-black-900: #302e4d;
+    --text-black-700: #504e70;
+}
+
+body[data-theme='night'] {
+    --bg-black-900: #151515;
+    --bg-black-100: #222222;
+    --bg-black-50: #393939;
+    --text-black-900: #ffffff;
+    --text-black-700: #e9e9e9;
+}
+
+
+body {
+    line-height: 1.5;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+::before, ::after {
+    box-sizing: border-box;
+}
