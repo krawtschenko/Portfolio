@@ -4,10 +4,11 @@ import {Container} from "../common/Container";
 import {Title} from "../common/Title";
 import {Row} from "../common/Row";
 import {FaEnvelope, FaGlobeEurope, FaMapMarkerAlt, FaPhone} from "react-icons/fa";
+import {FieldValues, useForm} from "react-hook-form";
 
 const ContactMain = styled.section`
   animation: slideContent 1s ease;
-  
+
   @keyframes slideContent {
     0% {
       opacity: 0;
@@ -108,7 +109,7 @@ const Input = styled.input`
   font-size: 16px;
   color: var(--text-black-700);
   transition: all 0.3s ease;
-  
+
   &:focus {
     box-shadow: var(--radii);
   }
@@ -156,8 +157,30 @@ const Button = styled.button`
   }
 `
 
+const Error = styled.p`
+  color: #da1427;
+  font-size: 14px;
+  padding-left: 20px;
+`
+
 
 export const Contact = () => {
+    const {
+        register,
+        formState: {
+            errors
+        },
+        handleSubmit,
+        reset
+    } = useForm({
+        mode: 'onBlur'
+    })
+
+    const onSubmit = (data: FieldValues) => {
+        alert(JSON.stringify(data));
+        reset()
+    }
+
     return (
         <ContactMain>
             <Container>
@@ -201,11 +224,17 @@ export const Contact = () => {
                 <ContactTitle>Send Me An Email</ContactTitle>
                 <ContactSubTitle>I'm Very Responsive To Message</ContactSubTitle>
                 <Row>
-                    <Form>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
                         <Row>
                             <FormItem>
                                 <FormGroup>
-                                    <Input type="text" placeholder="Name"/>
+                                    <Input type="text" placeholder="Name"
+                                           {...register('name', {
+                                               required: true,
+                                               minLength: 5
+                                           })}/>
+                                    {errors?.name?.type === "required" && <Error>This field is required</Error>}
+                                    {errors?.name?.type === "minLength" && <Error>Minimum 5 letters</Error>}
                                 </FormGroup>
                             </FormItem>
                             <FormItem>
