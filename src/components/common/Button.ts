@@ -7,13 +7,14 @@ export const Button = styled(Link)`
   padding: 12px 35px;
   color: #ffffff;
   border-radius: 40px;
-  border: none;
+  border: 2px solid var(--skin-color);
   display: inline-block;
   white-space: nowrap;
   background: var(--skin-color);
   transition: all 0.5s ease;
 
   &:hover {
-    transform: scale(1.05);
+    color: var(--skin-color);
+    background: none;
   }
 `

@@ -137,7 +137,7 @@ const Button = styled.button`
   padding: 0 50px;
   color: #ffffff;
   border-radius: 40px;
-  border: none;
+  border: 2px solid var(--skin-color);
   display: inline-block;
   white-space: nowrap;
   background: var(--skin-color);
@@ -146,7 +146,8 @@ const Button = styled.button`
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.05);
+    color: var(--skin-color);
+    background: none;
   }
 
   @media (max-width: 767px) {
