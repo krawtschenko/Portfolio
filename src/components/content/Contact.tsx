@@ -78,7 +78,7 @@ const Icon = styled.div`
   }
 `
 
-const Form = styled.div`
+const Form = styled.form`
   padding: 0 15px 0 15px;
   flex: 0 0 100%;
   max-width: 100%;
