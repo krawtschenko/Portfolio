@@ -29,6 +29,10 @@ const Logo = styled.div`
   top: 50px;
   font-size: 30px;
   text-transform: capitalize;
+  
+  @media (max-height: 490px) {
+    display: none;
+  }
 
   a {
     color: var(--text-black-900);
@@ -158,6 +162,10 @@ const Social = styled.div`
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
+
+  @media (max-height: 490px) {
+    display: none;
+  }
 
   a {
     font-size: 25px;
