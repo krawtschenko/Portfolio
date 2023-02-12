@@ -4,7 +4,7 @@ import {Container} from "../common/Container";
 import {Title} from "../common/Title";
 import {Row} from "../common/Row";
 import {FaEnvelope, FaGlobeEurope, FaMapMarkerAlt, FaPhone} from "react-icons/fa";
-import {FieldValues, useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 
 const ContactMain = styled.section`
   animation: slideContent 1s ease;
@@ -160,24 +160,22 @@ const Button = styled.button`
 const Error = styled.p`
   color: #da1427;
   font-size: 14px;
-  padding-left: 20px;
+  padding: 0 10px;
 `
 
 
 export const Contact = () => {
     const {
         register,
-        formState: {
-            errors
-        },
+        formState: {errors},
         handleSubmit,
         reset
-    } = useForm({
-        mode: 'onBlur'
+    } = useForm<FormInputs>({
+        mode: 'onBlur' || 'onSubmit' || 'onTouched'
     })
 
-    const onSubmit = (data: FieldValues) => {
-        alert(JSON.stringify(data));
+    const onSubmit = (data: FormInputs) => {
+        console.log(data)
         reset()
     }
 
@@ -230,30 +228,72 @@ export const Contact = () => {
                                 <FormGroup>
                                     <Input type="text" placeholder="Name"
                                            {...register('name', {
-                                               required: true,
-                                               minLength: 5
+                                               required: 'This field is required',
+                                               pattern: {
+                                                   value: /[A-Za-z]/,
+                                                   message: 'Invalid name'
+                                               },
+                                               minLength: {
+                                                   value: 2,
+                                                   message: 'Less than the minimum number of characters'
+                                               },
+                                               maxLength: {
+                                                   value: 30,
+                                                   message: 'Exceeding the maximum number of characters'
+                                               }
                                            })}/>
-                                    {errors?.name?.type === "required" && <Error>This field is required</Error>}
-                                    {errors?.name?.type === "minLength" && <Error>Minimum 5 letters</Error>}
+                                    {errors.name && <Error>{errors.name.message}</Error>}
                                 </FormGroup>
                             </FormItem>
                             <FormItem>
                                 <FormGroup>
-                                    <Input type="email" placeholder="Email"/>
+                                    <Input type="email" placeholder="Email"
+                                           {...register('email', {
+                                               required: 'This field is required',
+                                               pattern: {
+                                                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                                   message: 'Invalid email address'
+                                               }
+                                           })}/>
+                                    {errors.email && <Error>{errors.email.message}</Error>}
                                 </FormGroup>
                             </FormItem>
                         </Row>
                         <Row>
                             <FormItem width='100%'>
                                 <FormGroup>
-                                    <Input type="text" placeholder="Subject"/>
+                                    <Input type="text" placeholder="Subject"
+                                           {...register('subject', {
+                                               required: 'This field is required',
+                                               minLength: {
+                                                   value: 3,
+                                                   message: 'Less than the minimum number of characters'
+                                               },
+                                               maxLength: {
+                                                   value: 20,
+                                                   message: 'Exceeding the maximum number of characters'
+                                               }
+                                           })}/>
+                                    {errors.subject && <Error>{errors.subject.message}</Error>}
                                 </FormGroup>
                             </FormItem>
                         </Row>
                         <Row>
                             <FormItem width='100%'>
                                 <FormGroup>
-                                    <Textarea name="" placeholder="Message"/>
+                                    <Textarea placeholder="Message"
+                                              {...register('text', {
+                                                  required: 'This field is required',
+                                                  minLength: {
+                                                      value: 10,
+                                                      message: 'Less than the minimum number of characters'
+                                                  },
+                                                  maxLength: {
+                                                      value: 100,
+                                                      message: 'Exceeding the maximum number of characters'
+                                                  }
+                                              })}/>
+                                    {errors.text && <Error>{errors.text.message}</Error>}
                                 </FormGroup>
                             </FormItem>
                         </Row>
@@ -268,6 +308,13 @@ export const Contact = () => {
         </ContactMain>
     );
 };
+
+type FormInputs = {
+    name: string
+    email: string
+    subject: string
+    text: string
+}
 
 interface FormItemType {
     width?: string
