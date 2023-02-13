@@ -5,6 +5,7 @@ import {Title} from "../common/Title";
 import {Row} from "../common/Row";
 import {FaEnvelope, FaGlobeEurope, FaMapMarkerAlt, FaPhone} from "react-icons/fa";
 import {useForm} from "react-hook-form";
+import emailjs from "@emailjs/browser";
 
 const ContactMain = styled.section`
   animation: slideContent 1s ease;
@@ -175,6 +176,13 @@ export const Contact = () => {
     })
 
     const onSubmit = (data: FormInputs) => {
+        emailjs.send('yevhenii_o9m3vhn', 'portfolio_o9m3vhn', {...data}, 'eYz_ofN54lpO9cc7U')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            })
+
         console.log(data)
         reset()
     }
