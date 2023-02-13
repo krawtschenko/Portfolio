@@ -176,7 +176,7 @@ export const Contact = () => {
     })
 
     const onSubmit = (data: FormInputs) => {
-        emailjs.send('yevhenii_o9m3vhn', 'portfolio_o9m3vhn', {...data}, 'eYz_ofN54lpO9cc7U')
+        emailjs.send('yevhenii_o9m3vhn', 'portfolio_o9m3vhn', data, 'eYz_ofN54lpO9cc7U')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
