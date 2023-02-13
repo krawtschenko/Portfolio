@@ -282,7 +282,7 @@ export const Contact = () => {
                             <FormItem width='100%'>
                                 <FormGroup>
                                     <Textarea placeholder="Message"
-                                              {...register('text', {
+                                              {...register('message', {
                                                   required: 'This field is required',
                                                   minLength: {
                                                       value: 10,
@@ -293,7 +293,7 @@ export const Contact = () => {
                                                       message: 'Exceeding the maximum number of characters'
                                                   }
                                               })}/>
-                                    {errors.text && <Error>{errors.text.message}</Error>}
+                                    {errors.message && <Error>{errors.message.message}</Error>}
                                 </FormGroup>
                             </FormItem>
                         </Row>
@@ -313,7 +313,7 @@ type FormInputs = {
     name: string
     email: string
     subject: string
-    text: string
+    message: string
 }
 
 interface FormItemType {
