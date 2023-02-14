@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import {Container} from "../common/Container";
 import {Title} from "../common/Title";
@@ -6,6 +6,7 @@ import {Row} from "../common/Row";
 import {FaEnvelope, FaGlobeEurope, FaMapMarkerAlt, FaPhone} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import emailjs from "@emailjs/browser";
+import {PositionedSnackbar} from "../common/PositionedSnackbar";
 
 const ContactMain = styled.section`
   animation: slideContent 1s ease;
@@ -166,6 +167,8 @@ const Error = styled.p`
 
 
 export const Contact = () => {
+    const [success, setSuccess] = useState<boolean>(false)
+
     const {
         register,
         formState: {errors},
@@ -179,9 +182,13 @@ export const Contact = () => {
         emailjs.send('yevhenii_o9m3vhn', 'portfolio_o9m3vhn', data, 'eYz_ofN54lpO9cc7U')
             .then((result) => {
                 console.log(result.text);
+                setSuccess(true)
             }, (error) => {
                 console.log(error.text);
-            })
+                setSuccess(false)
+            }).finally(() => {
+
+        })
 
         console.log(data)
         reset()
@@ -312,6 +319,7 @@ export const Contact = () => {
                         </Row>
                     </Form>
                 </Row>
+                <PositionedSnackbar success={success} setSuccess={setSuccess}/>
             </Container>
         </ContactMain>
     );
