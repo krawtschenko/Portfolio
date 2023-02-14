@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
-import Snackbar, {SnackbarOrigin} from '@mui/material/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, {AlertProps} from '@mui/material/Alert';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -11,30 +11,27 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 export const PositionedSnackbar: React.FC<SnackbarType> = ({success, setSuccess}) => {
-    const [state, setState] = React.useState<State>({
-        open: false,
+    const position: PositionType = {
         vertical: 'bottom',
-        horizontal: 'right',
-    });
-    const {vertical, horizontal, open} = state;
-
-    const handleClick = () => {
-        setState({...state, open: true});
-    };
+        horizontal: 'right'
+    }
+    const {vertical, horizontal} = position
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
         }
 
-        setState({...state, open: false});
+        setSuccess(undefined)
     };
 
     return (
         <Stack spacing={2} sx={{width: '100%'}}>
-            <Snackbar open={open} autoHideDuration={5000} onClose={handleClose} anchorOrigin={{vertical, horizontal}}>
-                <Alert onClose={handleClose} severity={success ? 'success' : 'error'} sx={{width: '100%'}}>
-                    {success ? 'This is a success message!' : 'This is an error message!'}
+            <Snackbar open={success} autoHideDuration={5000} onClose={handleClose}
+                      anchorOrigin={{vertical, horizontal}}>
+                <Alert onClose={handleClose} severity={'success'} sx={{width: '100%'}}>
+                    {success && 'This is a success message!'}
+                    {success || 'This is an error message!'}
                 </Alert>
             </Snackbar>
         </Stack>
@@ -42,10 +39,11 @@ export const PositionedSnackbar: React.FC<SnackbarType> = ({success, setSuccess}
 }
 
 type SnackbarType = {
-    success: boolean
-    setSuccess: (success: boolean) => void
+    success: boolean | undefined
+    setSuccess: (success: boolean | undefined) => void
 }
 
-export interface State extends SnackbarOrigin {
-    open: boolean;
+type PositionType = {
+    vertical: "bottom" | "top",
+    horizontal: "center" | "right" | "left"
 }

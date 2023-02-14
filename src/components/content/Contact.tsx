@@ -167,7 +167,7 @@ const Error = styled.p`
 
 
 export const Contact = () => {
-    const [success, setSuccess] = useState<boolean>(false)
+    const [success, setSuccess] = useState<boolean | undefined>(undefined)
 
     const {
         register,
@@ -180,14 +180,10 @@ export const Contact = () => {
 
     const onSubmit = (data: FormInputs) => {
         emailjs.send('yevhenii_o9m3vhn', 'portfolio_o9m3vhn', data, 'eYz_ofN54lpO9cc7U')
-            .then((result) => {
-                console.log(result.text);
+            .then(() => {
                 setSuccess(true)
-            }, (error) => {
-                console.log(error.text);
-                setSuccess(false)
-            }).finally(() => {
-
+            }).catch(() => {
+            setSuccess(false)
         })
 
         console.log(data)
