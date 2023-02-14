@@ -186,7 +186,6 @@ export const Contact = () => {
             setSuccess(false)
         })
 
-        console.log(data)
         reset()
     }
 

@@ -30,7 +30,7 @@ export const PositionedSnackbar: React.FC<SnackbarType> = ({success, setSuccess}
             <Snackbar open={success} autoHideDuration={5000} onClose={handleClose}
                       anchorOrigin={{vertical, horizontal}}>
                 <Alert onClose={handleClose} severity={'success'} sx={{width: '100%'}}>
-                    {success && 'This is a success message!'}
+                    Success
                 </Alert>
             </Snackbar>
         </Stack>
