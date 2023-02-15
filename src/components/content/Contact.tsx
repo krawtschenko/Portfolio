@@ -294,11 +294,11 @@ export const Contact = () => {
                                               {...register('message', {
                                                   required: 'This field is required',
                                                   minLength: {
-                                                      value: 10,
+                                                      value: 2,
                                                       message: 'Less than the minimum number of characters'
                                                   },
                                                   maxLength: {
-                                                      value: 100,
+                                                      value: 300,
                                                       message: 'Exceeding the maximum number of characters'
                                                   }
                                               })}/>
