@@ -210,7 +210,7 @@ export const Contact = () => {
                         <Icon>
                             <FaMapMarkerAlt/>
                         </Icon>
-                        <h4>Office</h4>
+                        <h4>Location</h4>
                         <p>Poznań</p>
                     </Item>
                     <Item>
@@ -225,7 +225,7 @@ export const Contact = () => {
                             <FaGlobeEurope/>
                         </Icon>
                         <h4>Website</h4>
-                        <p>www.github.io</p>
+                        <p>www.github.com/krawtschenko</p>
                     </Item>
                 </Row>
                 <ContactTitle>Send Me An Email</ContactTitle>

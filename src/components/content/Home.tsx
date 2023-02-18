@@ -1,11 +1,10 @@
-import React from 'react';
 import styled from "styled-components";
-import {Container} from "../common/Container";
-import {Row} from "../common/Row"
-import photo from "../../img/main.jpg"
-import {Button} from "../common/Button";
-import ReactTypingEffect from 'react-typing-effect';
-import Tilt from 'react-tilt'
+import { Container } from "../common/Container";
+import { Row } from "../common/Row";
+import photo from "../../img/main.jpg";
+import { Button } from "../common/Button";
+import ReactTypingEffect from "react-typing-effect";
+import Tilt from "react-tilt";
 
 const HomeMain = styled.section`
   min-height: 100vh;
@@ -23,7 +22,7 @@ const HomeMain = styled.section`
       transform: translateX(0%);
     }
   }
-`
+`;
 
 const Info = styled.div`
   padding: 0 15px 0 15px;
@@ -44,19 +43,19 @@ const Info = styled.div`
   @media (max-width: 464px) {
     padding: 50px 15px 50px 15px;
   }
-`
+`;
 
 const Hello = styled.h3`
   font-size: 28px;
   margin: 15px 0;
 
   span {
-    font-family: 'Lobster', cursive;
+    font-family: "Lobster", cursive;
     font-size: 35px;
     font-weight: 400;
     color: var(--skin-color);
   }
-`
+`;
 
 const Profession = styled.h3`
   font-size: 30px;
@@ -65,8 +64,7 @@ const Profession = styled.h3`
   span {
     color: var(--skin-color);
   }
-`
-
+`;
 
 const Photo = styled.div`
   padding: 0 15px 0 15px;
@@ -86,7 +84,7 @@ const Photo = styled.div`
   }
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     height: 440px;
     width: 300px;
@@ -95,33 +93,43 @@ const Photo = styled.div`
     top: -20px;
     z-index: -1;
   }
-`
+`;
 
 export const Home = () => {
-    return (
-        <HomeMain>
-            <Container style={{padding: '0'}}>
-                <Row>
-                    <Info>
-                        <Hello>Hello, my name is <span>Yevhenii Kravchenko</span></Hello>
-                        <Profession>I'm a <span>
-                            <ReactTypingEffect speed={100} eraseSpeed={100} eraseDelay={1000} typingDelay={1000}
-                                               text={["Frontend Developer", "React Developer"]}
-                            />
-                        </span></Profession>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cum fugiat iusto
-                            molestiae, nostrum odio optio ullam voluptate. Accusamus alias amet blanditiis doloribus
-                            maxime praesentium quis sed unde veritatis vero.
-                        </p>
-                        <Button to="#">Download CV</Button>
-                    </Info>
-                    <Photo>
-                        <Tilt options={{max: 20, scale: 1}}>
-                            <img src={photo} alt="main"/>
-                        </Tilt>
-                    </Photo>
-                </Row>
-            </Container>
-        </HomeMain>
-    );
+  return (
+    <HomeMain>
+      <Container style={{ padding: "0" }}>
+        <Row>
+          <Info>
+            <Hello>
+              Hello, my name is <span>Yevhenii Kravchenko</span>
+            </Hello>
+            <Profession>
+              I'm a{" "}
+              <span>
+                <ReactTypingEffect
+                  speed={100}
+                  eraseSpeed={100}
+                  eraseDelay={1000}
+                  typingDelay={1000}
+                  text={["Programmer", "Frontend Developer", "React Developer"]}
+                />
+              </span>
+            </Profession>
+            <p>
+              I'm a Developer using web technologies to build
+              products and focusing on solving problems for different niches and
+              different industries using the power of technology
+            </p>
+            <Button to="#">Download CV</Button>
+          </Info>
+          <Photo>
+            <Tilt options={{ max: 20, scale: 1 }}>
+              <img src={photo} alt="main" />
+            </Tilt>
+          </Photo>
+        </Row>
+      </Container>
+    </HomeMain>
+  );
 };
