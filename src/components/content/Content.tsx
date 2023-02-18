@@ -35,7 +35,7 @@ const Switcher = styled.div<SwitcherType>`
   z-index: 101;
   border-radius: 5px;
   transition: all 0.3s ease;
-  transform: translateX(${({distance}) => distance});
+  transform: translateX(${({isOpenConfig}) => isOpenConfig ? '0' : '200px'});
 
   h4 {
     margin: 0 0 10px;
@@ -119,7 +119,7 @@ const Overlay = styled.div<OverlayType>`
   background: black;
   opacity: 0.75;
   z-index: 1;
-  display: ${({display}) => display};
+  display: ${({isOpenMenu}) => isOpenMenu ? 'block' : 'none'};
 `
 
 export const Content: FC<ContentType> = ({children}) => {
@@ -161,10 +161,10 @@ export const Content: FC<ContentType> = ({children}) => {
         <>
             <Menu isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu}/>
             <ContentMain onClick={() => setIsOpenConfig(false)}>
-                <Overlay display={isOpenMenu ? 'block' : 'none'} onClick={() => setIsOpenMenu(false)}/>
+                <Overlay isOpenMenu={isOpenMenu} onClick={() => setIsOpenMenu(false)}/>
                 {children}
             </ContentMain>
-            <Switcher distance={isOpenConfig ? '0' : '200px'}>
+            <Switcher isOpenConfig={isOpenConfig}>
                 <ColorSwitcher onClick={() => setIsOpenConfig(!isOpenConfig)}>
                     <FaCog/>
                 </ColorSwitcher>
@@ -195,9 +195,9 @@ type ContentType = {
 }
 
 interface SwitcherType {
-    distance: string
+    isOpenConfig: boolean
 }
 
 interface OverlayType {
-    display: string
+    isOpenMenu: boolean
 }

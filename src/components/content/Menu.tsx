@@ -20,7 +20,7 @@ const MenuMain = styled.div<AsideMainType>`
   transition: all 0.3s ease;
 
   @media (max-width: 1199px) {
-    left: ${({distance}) => distance};
+    left: ${({isOpenMenu}) => isOpenMenu ? '0' : '-270px'};
   }
 `
 
@@ -29,7 +29,7 @@ const Logo = styled.div`
   top: 50px;
   font-size: 30px;
   text-transform: capitalize;
-  
+
   @media (max-height: 490px) {
     display: none;
   }
@@ -91,7 +91,7 @@ const Hamburger = styled.div<HamburgerType>`
   span {
     height: 2px;
     width: 18px;
-    background: ${({background}) => background};
+    background: ${({isOpenMenu}) => isOpenMenu ? 'transparent' : 'var(--skin-color)'};
     display: inline-block;
     position: relative;
 
@@ -101,9 +101,9 @@ const Hamburger = styled.div<HamburgerType>`
       width: 18px;
       background: var(--skin-color);
       position: absolute;
-      top: ${({topBefore}) => topBefore};
+      top: ${({isOpenMenu}) => isOpenMenu ? '0' : '-6px'};
       left: 0;
-      transform: ${({transformBefore}) => transformBefore};
+      transform: ${({isOpenMenu}) => isOpenMenu ? 'rotate(45deg)' : ''};
     }
 
     &::after {
@@ -112,15 +112,15 @@ const Hamburger = styled.div<HamburgerType>`
       width: 18px;
       background: var(--skin-color);
       position: absolute;
-      top: ${({topAfter}) => topAfter};
+      top: ${({isOpenMenu}) => isOpenMenu ? '0' : '6px'};
       left: 0;
-      transform: ${({transformAfter}) => transformAfter};
+      transform: ${({isOpenMenu}) => isOpenMenu ? 'rotate(-45deg)' : ''};
     }
   }
 
   @media (max-width: 1199px) {
     display: flex;
-    left: ${({distance}) => distance};
+    left: ${({isOpenMenu}) => isOpenMenu ? '300px' : '30px'};
   }
 `
 
@@ -131,7 +131,7 @@ const Nav = styled.ul`
   li {
     margin-bottom: 20px;
     transition: all 0.3s ease;
-    
+
 
     &:hover {
       transform: scale(1.09);
@@ -190,16 +190,9 @@ const Social = styled.div`
 `
 
 export const Menu: FC<AsidePropsType> = ({isOpenMenu, setIsOpenMenu}) => {
-    const menu = isOpenMenu
-
     return (
-        <MenuMain distance={menu ? '0' : '-270px'}>
-            <Hamburger onClick={() => setIsOpenMenu(!isOpenMenu)}
-                       background={menu ? 'transparent' : 'var(--skin-color)'}
-                       distance={menu ? '300px' : '30px'} topBefore={menu ? '0' : '-6px'}
-                       topAfter={menu ? '0' : '6px'} transformBefore={menu ? 'rotate(45deg)' : ''}
-                       transformAfter={menu ? 'rotate(-45deg)' : ''}
-            >
+        <MenuMain isOpenMenu={isOpenMenu}>
+            <Hamburger onClick={() => setIsOpenMenu(!isOpenMenu)} isOpenMenu={isOpenMenu}>
                 <span></span>
             </Hamburger>
             <Logo onClick={() => setIsOpenMenu(false)}>
@@ -253,14 +246,9 @@ type AsidePropsType = {
 }
 
 interface AsideMainType {
-    distance: string
+    isOpenMenu: boolean
 }
-interface HamburgerType {
-    background: string
-    distance: string
-    topBefore: string
-    topAfter: string
-    transformBefore: string
-    transformAfter: string
 
+interface HamburgerType {
+    isOpenMenu: boolean
 }
