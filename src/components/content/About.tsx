@@ -219,7 +219,7 @@ export const About = () => {
                 </h3>
                 <p>
                   I'm a Front-End Developer located in Poland, Poznań.
-                  Well-organized person, problem solver,employee with high
+                  Well-organized person, problem solver, employee with high
                   attention to detail. Fan of computer games, outdoor, movies
                   and technologies. Interested in the entire frontend spectrum
                   and working on ambitious projects with positive people.
