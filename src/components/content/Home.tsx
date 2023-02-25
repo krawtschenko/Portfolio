@@ -139,7 +139,7 @@ export const Home = () => {
                             products and focusing on solving problems for different niches and
                             different industries using the power of technology
                         </p>
-                        <Button href={CV} download>Download CV</Button>
+                        <Button href={CV} download="Kravchenko_CV">Download CV</Button>
                     </Info>
                     <Photo>
                         <Tilt options={{max: 20, scale: 1}}>
