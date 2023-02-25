@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Container } from "../common/Container";
-import { Row } from "../common/Row";
+import {Container} from "../common/Container";
+import {Row} from "../common/Row";
 import photo from "../../img/main.jpg";
-import { Button } from "../common/Button";
 import ReactTypingEffect from "react-typing-effect";
 import Tilt from "react-tilt";
+import CV from "../../img/KravchenkoCV.pdf"
 
 const HomeMain = styled.section`
   min-height: 100vh;
@@ -95,41 +95,59 @@ const Photo = styled.div`
   }
 `;
 
+const Button = styled.a`
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 35px;
+  color: #ffffff;
+  border-radius: 40px;
+  border: 2px solid var(--skin-color);
+  display: inline-block;
+  white-space: nowrap;
+  background: var(--skin-color);
+  transition: all 0.5s ease;
+
+  &:hover {
+    color: var(--skin-color);
+    background: none;
+  }
+`
+
 export const Home = () => {
-  return (
-    <HomeMain>
-      <Container style={{ padding: "0" }}>
-        <Row>
-          <Info>
-            <Hello>
-              Hello, my name is <span>Yevhenii Kravchenko</span>
-            </Hello>
-            <Profession>
-              I'm a{" "}
-              <span>
+    return (
+        <HomeMain>
+            <Container style={{padding: "0"}}>
+                <Row>
+                    <Info>
+                        <Hello>
+                            Hello, my name is <span>Yevhenii Kravchenko</span>
+                        </Hello>
+                        <Profession>
+                            I'm a{" "}
+                            <span>
                 <ReactTypingEffect
-                  speed={100}
-                  eraseSpeed={100}
-                  eraseDelay={1000}
-                  typingDelay={1000}
-                  text={["Programmer", "Frontend Developer", "React Developer"]}
+                    speed={100}
+                    eraseSpeed={100}
+                    eraseDelay={1000}
+                    typingDelay={1000}
+                    text={["Programmer", "Frontend Developer", "React Developer"]}
                 />
               </span>
-            </Profession>
-            <p>
-              I'm a Developer using web technologies to build
-              products and focusing on solving problems for different niches and
-              different industries using the power of technology
-            </p>
-            <Button to="#">Download CV</Button>
-          </Info>
-          <Photo>
-            <Tilt options={{ max: 20, scale: 1 }}>
-              <img src={photo} alt="main" />
-            </Tilt>
-          </Photo>
-        </Row>
-      </Container>
-    </HomeMain>
-  );
+                        </Profession>
+                        <p>
+                            I'm a Developer using web technologies to build
+                            products and focusing on solving problems for different niches and
+                            different industries using the power of technology
+                        </p>
+                        <Button href={CV} download>Download CV</Button>
+                    </Info>
+                    <Photo>
+                        <Tilt options={{max: 20, scale: 1}}>
+                            <img src={photo} alt="main"/>
+                        </Tilt>
+                    </Photo>
+                </Row>
+            </Container>
+        </HomeMain>
+    );
 };
