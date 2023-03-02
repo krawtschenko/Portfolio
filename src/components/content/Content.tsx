@@ -36,6 +36,7 @@ const Switcher = styled.div<SwitcherType>`
   border-radius: 5px;
   transition: all 0.3s ease;
   transform: translateX(${({isOpenConfig}) => isOpenConfig ? '0' : '200px'});
+  user-select: none;
 
   h4 {
     margin: 0 0 10px;

@@ -11,6 +11,7 @@ const HomeMain = styled.section`
   display: flex;
   color: var(--text-black-900);
   animation: slideContent 1s ease;
+  user-select: none;
 
   @keyframes slideContent {
     0% {
