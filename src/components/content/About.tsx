@@ -339,4 +339,4 @@ export const About = () => {
       </Container>
     </AboutMain>
   );
-};
+}
