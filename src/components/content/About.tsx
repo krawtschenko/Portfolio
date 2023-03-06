@@ -338,5 +338,5 @@ export const About = () => {
         </Row>
       </Container>
     </AboutMain>
-  );
+  )
 }
